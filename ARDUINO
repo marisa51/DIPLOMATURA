@@ -2,7 +2,11 @@ const  int buzzer=12;  // constante que contiene el número del pin de arduino a
  const int frecuencia[]={261,277,294,311,330,349,370,392,415,440,466,494};  // arreglo que contiene las frecuencias
  const int numFrecu=10;
  int laser=13;
-
+ int turbidez=0;
+ int nivel=0;
+ float volt=0.00;
+ float calibre=2.5; // voltaje de salida para calibrar con agua limpia
+ int NTU=0;
 void setup() 
 {
   Serial.begin(9600); //transmisión de datos en serie. (9600) medición en baudios, muestra el resultado de la medición
@@ -16,15 +20,15 @@ void setup()
 
 void loop()
 {
-             int nivel=analogRead(A2); //debido a que es una medición análoga, el pin de entrada debe ser análoga
+              nivel=analogRead(A2); //debido a que es una medición análoga, el pin de entrada debe ser análoga
               Serial.print("EL NIVEL DEL RECIPIENTE ES:   ");
               Serial.println(nivel);
               delay(1000);
 
             
-            int turbidez=analogRead(A0); // lee la entrada analógica del pin A0
-            float volt= turbidez*(5.0/1024.0);//la lectura análoga arrojada por el sensor va de 0 a 1023, podemos llevarla a una tensión de 0 a 5v
-             int  NTU = -1120.4*square(volt)+5742.3*volt-4352.9;
+            turbidez=analogRead(A0); // lee la entrada analógica del pin A0
+            volt= turbidez*(5.0/1024.0);//la lectura análoga arrojada por el sensor va de 0 a 1023, podemos llevarla a una tensión de 0 a 5v
+             NTU= 100.00 - ((volt / calibre) * 100.00);
             Serial. print ("Valor del voltaje:      ");
             Serial.println(volt);
             delay(200);   
