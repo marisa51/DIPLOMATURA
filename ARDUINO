@@ -25,8 +25,6 @@ void loop()
             int turbidez=analogRead(A0); // lee la entrada analógica del pin A0
             float volt= turbidez*(5.0/1024.0);//la lectura análoga arrojada por el sensor va de 0 a 1023, podemos llevarla a una tensión de 0 a 5v
              int  NTU = -1120.4*square(volt)+5742.3*volt-4352.9;
-            Serial. print("Valor del Sensor de Turbidez:        ");
-            Serial.println(NTU);
             Serial. print ("Valor del voltaje:      ");
             Serial.println(volt);
             delay(200);   
@@ -34,8 +32,10 @@ void loop()
               
     
     
-          if ((volt <9)& (NTU<1000)) {
+          if (volt <2.5) {
             Serial.println("  AGUA POTABLE "); 
+            Serial. print("Valor del Sensor de Turbidez:        ");
+            Serial.println(NTU);
             digitalWrite(buzzer,HIGH);
             delay(500);
             digitalWrite(buzzer,LOW);                                                                                                                                                
@@ -46,8 +46,10 @@ void loop()
             noTone(buzzer); 
            }
             
-          else if ((volt>=9)& (NTU>1000)){                                                                                                                                                      
+          else if(volt>2.5){                                                                                                                                                      
               Serial.println("   AGUA TURBIA   ");
+              Serial. print("Valor del Sensor de Turbidez:        ");
+            Serial.println(NTU);
               digitalWrite(laser,HIGH);
               delay(500);
               digitalWrite(laser, LOW);
