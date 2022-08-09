@@ -1,8 +1,8 @@
-  const  int buzzer=12;  // constante que contiene el número del pin de arduino al cual conectamos un buzzer                                                                                                                                                                                                                                      
+ const  int buzzer=12;  // constante que contiene el número del pin de arduino al cual conectamos un buzzer                                                                                                                                                                                                                                      
  int laser=13;
  float ntu=0.0;
  float volt=0.0;
-float a=3.0;
+ float a=3.0;
 
 void setup() 
 {
