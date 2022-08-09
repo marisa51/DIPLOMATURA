@@ -37,7 +37,7 @@ void loop()
               
     
     
-         if (volt>a) {
+         if (volt>=a) {
     
              Serial.print("AGUA POTABLE");
              digitalWrite(buzzer,HIGH);
